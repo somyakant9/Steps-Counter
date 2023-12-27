@@ -1,6 +1,6 @@
 // import logo from './logo.svg';
 import './App.css';
-import DateCounter from './Components/DateCounter';
+import DateCounter from './Components/DateCounter.jsx';
 
 function App() {
   return (

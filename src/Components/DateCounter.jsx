@@ -13,24 +13,20 @@ function DateCounter() {
   function handleIncrement() {
     setCount((count = count + step));
   }
-  function StepDecrement() {
-    if(step > 1) setStep((step) => step - 1);
-  }
-  function StepIncrement() {
-    setStep((step) => step + 1);
+  function handleReset(){
+    setStep(1);
+    setCount(0);
   }
 
   return (
     <div>
       <div>
-        <button disabled={step===1} onClick={StepDecrement}>-</button>
-        <span>Steps: {step}</span>
-        <button onClick={StepIncrement}>+</button>
+        <input type="range" min="0" max="10" onChange={(e) => setStep(Number(e.target.value))} />
+        <span>{step}</span>
       </div>
       <div>
-        {" "}
         <button onClick={handleDecrement}>-</button>
-        <span>Count: {count}</span>
+        <input type="number" value={count} onChange={(e)=>setCount(Number(e.target.value))} />
         <button onClick={handleIncrement}>+</button>
       </div>
       <span>
@@ -41,6 +37,9 @@ function DateCounter() {
           : `${Math.abs(count)} days ago was `}
       </span>
       <span>{date.toDateString()}</span>
+      <div>
+      <button onClick={handleReset} disabled={count===0 || step === 1}>Reset</button>  
+      </div>
     </div>
   );
 }
